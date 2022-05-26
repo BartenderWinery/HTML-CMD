@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Terminal</title>
+    <style> 
+        body{ background-color: black; display: flex; flex-direction: column}
+        #terminal{ display: flex; flex-direction: column}
+    </style>
+</head>
+<body>
+    <div id="terminal">
+        <p style="color:white;margin:0px" id="cursor">C:/</p>
+    </div>
+    <script>
+        var line=0; var terminal = document.getElementById("terminal");
+        function compile(data){
+            for(var i=0; i<data.length; i++){
+                line++; function insert(data){terminal.insertAdjacentHTML("beforeBegin",data)}
+                if(data[i]){insert("<p style='color:white;margin:0px' id='"+line+"'>"+data[i]+"</p>")}else{
+                    insert("<p style='color:white;margin:0px;height:10px' id='"+line+"''></p>")}}
+            }
+        window.onload=function(){
+            compile(["Mircosoft Windows [Version 10.0.19044.1706:Web]","(c) Mircosoft Corporation. All rights reserved.",""])}
+    </script>
+</body>
+</html>
