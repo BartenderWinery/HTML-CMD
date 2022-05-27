@@ -14,10 +14,11 @@
 </head>
 <body>
     <div id="terminal">
-        <p style="color:white;margin:0px;font-family:sans-serif" id="cursor">C:/<input></input></p>
+        <p style="color:white;margin:0px;font-family:sans-serif" id="cursor">C:/<input onblur="this.focus()" autofocus></input></p>
     </div>
     <script>
-        var line=0; var terminal = document.getElementById("terminal");
+        var line=0; 
+        var terminal = document.getElementById("terminal");
         function compile(data){
             for(var i=0; i<data.length; i++){
                 line++; function insert(data){terminal.insertAdjacentHTML("beforeBegin",data)}
