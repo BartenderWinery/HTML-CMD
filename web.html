@@ -7,19 +7,21 @@
     <title>HTML Terminal</title>
     <style> 
         body{ background-color: black; display: flex; flex-direction: column}
+        input{ background-color: transparent; border: none; color: white; padding: 0px}
+        input:focus{ outline: none}
         #terminal{ display: flex; flex-direction: column}
     </style>
 </head>
 <body>
     <div id="terminal">
-        <p style="color:white;margin:0px" id="cursor">C:/</p>
+        <p style="color:white;margin:0px;font-family:sans-serif" id="cursor">C:/<input></input></p>
     </div>
     <script>
         var line=0; var terminal = document.getElementById("terminal");
         function compile(data){
             for(var i=0; i<data.length; i++){
                 line++; function insert(data){terminal.insertAdjacentHTML("beforeBegin",data)}
-                if(data[i]){insert("<p style='color:white;margin:0px' id='"+line+"'>"+data[i]+"</p>")}else{
+                if(data[i]){insert("<p style='color:white;margin:0px;font-family:sans-serif' id='"+line+"'>"+data[i]+"</p>")}else{
                     insert("<p style='color:white;margin:0px;height:10px' id='"+line+"''></p>")}}
             }
         window.onload=function(){
