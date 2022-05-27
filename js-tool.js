@@ -1,8 +1,9 @@
 const position = [0,0,0,0]; id=Date.now()
-document.body.insertAdjacentHTML("beforeEnd", "<div id='tool "+id+"' style='position: absolute;margin:0px;resize:both;overflow:hidden;padding:0px;height:300px;width:500px'><iframe style='height:100%;width:100%' src='https://aerophp.000webhostapp.com/github/html%20terminal.html'></iframe></div>")
+document.body.insertAdjacentHTML("beforeEnd", "<div id='tool "+id+"' style='position: absolute;margin:0px;resize:both;overflow:hidden;padding:0px;height:300px;width:500px'><iframe id='frame "+id+"' style='height:100%;width:100%' src='https://aerophp.000webhostapp.com/github/html%20terminal.html'></iframe></div>")
 var tool=document.getElementById("tool "+id) 
-tool.insertAdjacentHTML("afterBegin", "<div id='con "+id+"' style='margin:0px;height:25px;width:100%;top:0;padding:0px;margin:0px;position:absolute'>")
+tool.insertAdjacentHTML("beforeEnd", "<div id='con "+id+"' style='margin:0px;height:25px;width:100%;top:0;padding:0px;margin:0px;position:absolute'>")
 var con=document.getElementById("con "+id)
+var frame=document.getElementById("frame "+id)
 function AddEvent(object, id, func) {
     if(object.attachEvent) object.attachEvent("on" + id, function() {func.call(object)})
     else if(object.addEventListener) object.addEventListener(id, func, false)
@@ -20,14 +21,16 @@ AddEvent(window,'keydown',function(e){
 })
 con.onmousedown=function(e){ //add mask
     con.style.pointerEvents = "none"
+    frame.style.pointerEvents = "none"
     e = e || window.event
     e.preventDefault()
     position[2] = e.clientX
     position[3] = e.clientY
     document.onmouseup=function(e){
-        con.onmouseup = null
-        con.onmousemove = null
-        con.style.pointerEvents = "all"}
+        document.onmouseup = null
+        document.onmousemove = null
+        con.style.pointerEvents = "all"
+        frame.style.pointerEvents = "all"}
     document.onmousemove=function(e){
         e = e || window.event
         e.preventDefault()
