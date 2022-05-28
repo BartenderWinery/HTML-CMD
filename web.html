@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="terminal">
-        <p style="color:white;margin:0px;font-family:sans-serif" id="cursor">C:/<input onblur="if(parent==self){this.focus()}" autofocus></input></p>
+        <p style="color:rgb(204,204,204);margin:0px;font-family:consolas" id="cursor">C:/<input onblur="if(parent==self){this.focus()}" autofocus></input></p>
     </div>
     <script>
         var line=0; 
@@ -22,8 +22,8 @@
         function compile(data){
             for(var i=0; i<data.length; i++){
                 line++; function insert(data){terminal.insertAdjacentHTML("beforeBegin",data)}
-                if(data[i]){insert("<p style='color:white;margin:0px;font-family:sans-serif' id='"+line+"'>"+data[i]+"</p>")}else{
-                    insert("<p style='color:white;margin:0px;height:10px' id='"+line+"''></p>")}}
+                if(data[i]){insert("<p style='color:rgb(204,204,204);margin:0px;font-family:consolas' id='"+line+"'>"+data[i]+"</p>")}else{
+                    insert("<p style='color:rgb(204,204,204);margin:0px;height:10px' id='"+line+"''></p>")}}
             }
         window.onload=function(){
             compile(["Mircosoft Windows [Version 10.0.19044.1706:Web]","(c) Mircosoft Corporation. All rights reserved.",""])}
