@@ -7,14 +7,14 @@
     <title>HTML Terminal</title>
     <style> 
         body{ background-color: black; display: flex; flex-direction: column}
-        input{ background-color: transparent; border: none; color: white; padding: 0px}
-        input:focus{ outline: none}
+        textarea{ background-color: transparent; border: none; color: rgb(204,204,204); padding: 0px; font-family: consolas; width: -webkit-fill-available; height: -webkit-fill-available; font-size: initial; position: fixed}
+        textarea:focus{ outline: none}
         #terminal{ display: flex; flex-direction: column}
     </style>
 </head>
 <body>
     <div id="terminal">
-        <p style="color:rgb(204,204,204);margin:0px;font-family:consolas" id="cursor">C:/<input onblur="if(parent==self){this.focus()}" autofocus></input></p>
+        <p style="color:rgb(204,204,204);margin:0px;font-family:consolas" id="cursor">C:/<textarea onblur="if(parent==self){this.focus()}" autofocus spellcheck="false"></textarea></p>
     </div>
     <script>
         var line=0; 
