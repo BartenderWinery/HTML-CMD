@@ -21,8 +21,8 @@
         var terminal = document.getElementById("terminal");
         var cmd = document.getElementById("cmd");
         const CMD=new Map([
-            ["echo","GUI.compile(['::','']);"],
-            ["dir","GUI.compile(['error','']);"]
+            ["echo","GUI.compile(['C:/[]','::','']);"],
+            ["dir","GUI.compile(['C:/error','']);"]
         ])
         var GUI = {
             compile:function(data){
@@ -43,7 +43,7 @@
                         this.error(["'"+lines[i]+"' is not recoginized as an internal or external command,","operable program or batch file."])
                         cmd.value=""
                         return 0}
-                    var sync = lines[i].split(/ /); var func = CMD.get(sync[0]); eval(func.replace("::",sync[1]?sync[1]:"ECHO is off."))
+                    var sync = lines[i].split(/ /); var func = CMD.get(sync[0]); eval(func.replace("[]",sync.toString().replace(","," ")).replace("::",sync[1]?sync[1]:"ECHO is off."))
                     cmd.value=""}
                 }
         }
