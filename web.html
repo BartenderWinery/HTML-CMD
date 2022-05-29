@@ -38,13 +38,11 @@
             eval:function(data){
                 lines=data.split(/[\n,;]+/)
                 for(var i=0; i<lines.length; i++){
-                    if(!CMD[0].some(_i => lines[i].includes(_i))){
+                    if(!CMD[0].some(_i => lines[i].includes(_i))||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){
                         this.error("'"+lines[i]+"' is not recoginized as an internal or external command, operable program or batch file.")
-                    }else{
-
-                    }
-                cmd.value=""
-            }}
+                        cmd.value=""
+                        return lines[i]}}
+                }//interpret here
         }
         function AddEvent(object, id, func) {
             if(object.attachEvent) object.attachEvent("on" + id, function() {func.call(object)})
