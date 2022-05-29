@@ -14,19 +14,55 @@
 </head>
 <body>
     <div id="terminal">
-        <p style="color:rgb(204,204,204);margin:0px;font-family:consolas" id="cursor">C:/<textarea onblur="if(parent==self){this.focus()}" autofocus spellcheck="false"></textarea></p>
+        <p style="color:rgb(204,204,204);margin:0px;font-family:consolas" id="cursor">C:/<textarea id="cmd" onblur="if(parent==self){this.focus()}" autofocus spellcheck="false"></textarea></p>
     </div>
     <script>
-        var line=0; 
+        var line=0; buffer=120; //temporary variables
         var terminal = document.getElementById("terminal");
-        function compile(data){
-            for(var i=0; i<data.length; i++){
-                line++; function insert(data){terminal.insertAdjacentHTML("beforeBegin",data)}
-                if(data[i]){insert("<p style='color:rgb(204,204,204);margin:0px;font-family:consolas' id='"+line+"'>"+data[i]+"</p>")}else{
-                    insert("<p style='color:rgb(204,204,204);margin:0px;height:10px' id='"+line+"''></p>")}}
+        var cmd = document.getElementById("cmd");
+        CMD=[
+            ["echo"]
+        ]
+        var GUI = {
+            compile:function(data){
+                for(var i=0; i<data.length; i++){
+                    line++; function insert(data){terminal.insertAdjacentHTML("beforeBegin",data)}
+                    if(data[i]){insert("<p style='color:rgb(204,204,204);margin:0px;font-family:consolas' id='"+line+"'>"+data[i]+"</p>")}else{
+                        insert("<p style='color:rgb(204,204,204);margin:0px;height:10px' id='"+line+"''></p>")}}}
+        }
+        var interpret = {
+            error:function(data){
+                GUI.compile([data])},
+            echo:function(data){
+                GUI.compile([data])},
+            eval:function(data){
+                lines=data.split(/[\n,;]+/)
+                for(var i=0; i<lines.length; i++){
+                    if(!CMD[0].some(_i => lines[i].includes(_i))){
+                        this.error("'"+lines[i]+"' is not recoginized as an internal or external command, operable program or batch file.")
+                    }else{
+
+                    }
+                cmd.value=""
+            }}
+        }
+        function AddEvent(object, id, func) {
+            if(object.attachEvent) object.attachEvent("on" + id, function() {func.call(object)})
+            else if(object.addEventListener) object.addEventListener(id, func, false)}
+        AddEvent(window,'keydown',function(e){
+            console.log(e)
+            switch(e.keyCode){
+                case 13:
+                    e.preventDefault()
+                    interpret.eval(cmd.value)
+                    break
+                default:
+                    if(e.crtlKey){} //^B here
+                    break
             }
+        })
         window.onload=function(){
-            compile(["Mircosoft Windows [Version 10.0.19044.1706:Web]","(c) Mircosoft Corporation. All rights reserved.",""])}
+            GUI.compile(["Mircosoft Windows [Version 10.0.19044.1706:Web]","(c) Mircosoft Corporation. All rights reserved.",""])}
     </script>
 </body>
 </html>
