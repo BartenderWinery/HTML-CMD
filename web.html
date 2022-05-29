@@ -32,14 +32,14 @@
         }
         var interpret = {
             error:function(data){
-                GUI.compile([data])},
+                GUI.compile(data)},
             echo:function(data){
-                GUI.compile([data])},
+                GUI.compile(data)},
             eval:function(data){
                 lines=data.split(/[\n,;]+/)
                 for(var i=0; i<lines.length; i++){
                     if(!CMD[0].some(_i => lines[i].includes(_i))||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){
-                        this.error("'"+lines[i]+"' is not recoginized as an internal or external command, operable program or batch file.")
+                        this.error(["'"+lines[i]+"' is not recoginized as an internal or external command,","operable program or batch file."])
                         cmd.value=""
                         return lines[i]}}
                 }//interpret here
