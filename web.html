@@ -21,8 +21,8 @@
         var terminal = document.getElementById("terminal");
         var cmd = document.getElementById("cmd");
         const CMD=new Map([
-            ["echo","GUI.print(::);"],
-            ["dir","GUI.print('error');"]
+            ["echo","GUI.compile(['::','']);"],
+            ["dir","GUI.compile(['error','']);"]
         ])
         var GUI = {
             compile:function(data){
@@ -37,13 +37,14 @@
             echo:function(data){
                 GUI.compile(data)},
             eval:function(data){
-                lines=data.replace(/ /,"").split(/[\n,;]+/)
+                lines=data[0]==" "?data.replace(" ","").split(/[\n,;]+/):data.split(/[\n,;]+/) //could probably improve this
                 for(var i=0; i<lines.length; i++){
-                    if(!CMD.has(lines[i].split(" ")[0])||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){
+                    if(!CMD.has(lines[i].split(/ /)[0])||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){//needs optimizing
                         this.error(["'"+lines[i]+"' is not recoginized as an internal or external command,","operable program or batch file."])
                         cmd.value=""
-                        return 0} //needs optimizing
-                    console.log(CMD.get(lines[i]))}
+                        return 0}
+                    var sync = lines[i].split(/ /); var func = CMD.get(sync[0]); eval(func.replace("::",sync[1]?sync[1]:"ECHO is off."))
+                    cmd.value=""}
                 }
         }
         function AddEvent(object, id, func) {
