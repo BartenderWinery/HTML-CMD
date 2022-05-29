@@ -20,9 +20,10 @@
         var line=0; buffer=120; //temporary variables
         var terminal = document.getElementById("terminal");
         var cmd = document.getElementById("cmd");
-        CMD=[
-            ["echo"]
-        ]
+        const CMD=new Map([
+            ["echo","GUI.print(::);"],
+            ["dir","GUI.print('error');"]
+        ])
         var GUI = {
             compile:function(data){
                 for(var i=0; i<data.length; i++){
@@ -36,13 +37,14 @@
             echo:function(data){
                 GUI.compile(data)},
             eval:function(data){
-                lines=data.split(/[\n,;]+/)
+                lines=data.replace(/ /,"").split(/[\n,;]+/)
                 for(var i=0; i<lines.length; i++){
-                    if(!CMD[0].some(_i => lines[i].includes(_i))||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){
+                    if(!CMD.has(lines[i].split(" ")[0])||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){
                         this.error(["'"+lines[i]+"' is not recoginized as an internal or external command,","operable program or batch file."])
                         cmd.value=""
-                        return lines[i]}}
-                }//interpret here
+                        return 0} //needs optimizing
+                    console.log(CMD.get(lines[i]))}
+                }
         }
         function AddEvent(object, id, func) {
             if(object.attachEvent) object.attachEvent("on" + id, function() {func.call(object)})
