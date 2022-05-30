@@ -56,7 +56,7 @@
                 lines=data[0]==" "?data.toLowerCase().replace(" ","").split(/[\n,;]+/):data.toLowerCase().split(/[\n,;]+/) //could probably improve this
                 for(var i=0; i<lines.length; i++){
                     if(!CMD.has(lines[i].split(/ /)[0])||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){//needs optimizing
-                        GUI.compile(["?:\>"+lines[i]+"","'"+lines[i]+"' is not recoginized as an internal or external command,","operable program or batch file.",""])
+                        GUI.compile(["?:\>"+lines[i]+"","'"+lines[i].split(" ")[0]+"' is not recoginized as an internal or external command,","operable program or batch file.",""])
                         cmd.value=""
                         return 0}
                     var sync = lines[i].split(/ /); var func = CMD.get(sync[0])[0]; eval(func.replace("[]",sync.toString().replace(","," ")).replace("::",sync[1]?sync[1]:CMD.get(data)[1]))
