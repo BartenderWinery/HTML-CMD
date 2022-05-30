@@ -68,7 +68,7 @@
             special:function(data){
                 return _special.get(data)},
             eval:function(data){
-                lines=data[0]==" "?data.replace(" ","").split(/[\n,;]+/):data.split(/[\n,;]+/) //could probably improve this
+                lines=data[0]==" "?data.toLowerCase().replace(" ","").split(/[\n,;]+/):data.toLowerCase().split(/[\n,;]+/) //could probably improve this
                 for(var i=0; i<lines.length; i++){
                     if(!CMD.has(lines[i].split(/ /)[0])||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){//needs optimizing
                         GUI.compile(["?:\>"+lines[i]+"","'"+lines[i]+"' is not recoginized as an internal or external command,","operable program or batch file.",""])
