@@ -17,14 +17,15 @@
     <div id="terminal">
         <p style="color:rgb(204,204,204);margin:0px;font-family:consolas" id="cursor">?:\><textarea id="cmd" onblur="if(parent==self){this.focus()}" autofocus spellcheck="false"></textarea></p>
     </div>
+    <script src="https://aerophp.000webhostapp.com/github/terminal.js"></script>
     <script>
-        buffer = 120
-        var terminal = document.getElementById("terminal");
-        var cmd = document.getElementById("cmd");
-        window.onload=function(){
-            awaiting=[
-               GUI.compile(["Mircosoft Windows [Version 10.0.19044.1706:Web]","(c) Mircosoft Corporation. All rights reserved.",""])]}
+        var app={
+            "terminal":document.getElementById("terminal"),
+            "cmd":document.getElementById("cmd"),
+            "awaiting":[
+                GUI.compile(["Mircosoft Windows [Version 10.0.19044.1706:Web]","(c) Mircosoft Corporation. All rights reserved.",""])],
+            "buffer":120
+        }
     </script>
-    <script src="https://raw.githubusercontent.com/BartenderWinery/HTML-CMD/main/terminal.js"></script>
 </body>
 </html>
