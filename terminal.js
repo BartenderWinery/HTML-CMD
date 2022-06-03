@@ -24,24 +24,25 @@ const CMD=new Map([//fix wrapping and add auto scrolling
     ["echo",["GUI.compile(['?:\>[]','::','']);","ECHO is on."]],
     ["dir",["GUI.compile(['?:\>function not complete','']);"]]])
 GUI = {
-   clear:function(){
-       while(document.body.children.length-4>0){document.body.children[0].remove()}
-       document.body.children[0].innerText=""},
-   compile:function(data){
-       for(i=0;i<data.length;i++){
-           line++; function insert(data){app.terminal.insertAdjacentHTML("beforeBegin",data)}
-           if(data[i])insert("<p style='color:rgb(204,204,204);margin:0px;font-family:consolas;white-space: pre' id='"+line+"'>"+data[i]+"</p>")
-           else insert("<p style='color:rgb(204,204,204);margin:0px;height:10px' id='"+line+"''></p>")}}}
+    clear:function(){
+        while(document.body.children.length-4>0){document.body.children[0].remove()}
+        document.body.children[0].innerText=""},
+    compile:function(data){
+        for(i=0;i<data.length;i++){
+            line++; function insert(data){app.terminal.insertAdjacentHTML("beforeBegin",data)}
+            if(data[i])insert("<p style='color:rgb(204,204,204);margin:0px;font-family:consolas;white-space: pre' id='"+line+"'>"+data[i]+"</p>")
+            else insert("<p style='color:rgb(204,204,204);margin:0px;height:10px' id='"+line+"''></p>")}}}
 interpret = {
-   eval:function(data){
-       lines=data[0]==" "?data.toLowerCase().replace(" ","").split(/[\n,;]+/):data.toLowerCase().split(/[\n,;]+/) //could probably improve this
-       for(i=0; i<lines.length; i++){
-           if(!CMD.has(lines[i].split(/ /)[0])||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){//needs optimizing
-               GUI.compile(["?:\>"+lines[i]+"","'"+lines[i].split(" ")[0]+"' is not recoginized as an internal or external command,","operable program or batch file.",""])
-               app.cmd.value=""
-               return 0}
+    eval:function(data){
+        lines=data[0]==" "?data.toLowerCase().replace(" ","").split(/[\n,;]+/):data.toLowerCase().split(/[\n,;]+/) //could probably improve this
+        for(i=0; i<lines.length; i++){
+            if(!CMD.has(lines[i].split(/ /)[0])||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){//needs optimizing
+                GUI.compile(["?:\>"+lines[i]+"","'"+lines[i].split(" ")[0]+"' is not recoginized as an internal or external command,","operable program or batch file.",""])
+                app.cmd.value=""
+                return 0}
             sync = lines[i].split(/ /);  func = CMD.get(sync[0])[0]; eval(func.replace("[]",sync.toString().replace(","," ")).replace("::",sync[1]?sync[1]:CMD.get(data)[1]))
-           app.cmd.value=""}}}
+            app.cmd.value=""}
+        window.scrollTo(0, document.body.scrollHeight)}}
 function AddEvent(object, id, func) {
     if(object.attachEvent) object.attachEvent("on" + id, function() {func.call(object)})
     else if(object.addEventListener) object.addEventListener(id, func, false)}
