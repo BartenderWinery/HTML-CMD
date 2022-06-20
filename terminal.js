@@ -25,8 +25,8 @@ const CMD=new Map([//fix wrapping and add auto scrolling
     ["dir",["GUI.compile(['?:\>function not complete','']);"]]])
 GUI = {
     clear:function(){
-        while(document.body.children.length-4>0){document.body.children[0].remove()}
-        document.body.children[0].innerText=""},
+        while(document.body.children.length-5){document.body.children[i].remove()}
+        document.body.children[document.body.children.length-5].value=""},
     compile:function(data){
         for(i=0;i<data.length;i++){
             line++; function insert(data){app.terminal.insertAdjacentHTML("beforeBegin",data)}
