@@ -11,7 +11,7 @@ var CMD=new Map([//fix wrapping and add auto scrolling
     ["cacls",["GUI.compile(['?:\>[]','::','']);","Deprecated, skipping until major development."]],
     ["call",["GUI.compile(['?:\>[]','::','']);",""]], //call function threatened, currently just echos
     ["cd",["GUI.compile(['?:\>[]','::','']);","?:\>"]],
-    ["chcp",["GUI.compile(['?:\>[]','ACtive code page: 437','']);"]], //not actually sure what this does
+    ["chcp",["GUI.compile(['?:\>[]','Active code page: 437','']);"]], //not actually sure what this does
     ["chdir",["GUI.compile(['?:\>[]','::','']);","?:\>"]],
     ["chkdsk",["GUI.compile(['?:\>[]',::,'']);",["'Access Denied as you do not have sufficient privileges or'","'the disk may be locked by another process.'","'You have to invoke this utility running in elevated mode'","'and make sure the disk is unlocked.'"]]],
     ["chkntfs",["GUI.compile(['?:\>[]','::','']);","You must specify at least one drive name."]],
