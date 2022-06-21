@@ -15,7 +15,7 @@ var CMD=new Map([//fix wrapping and add auto scrolling
     ["chdir",["GUI.compile(['?:\>[]','::','']);","?:\>"]],
     ["chkdsk",["GUI.compile(['?:\>[]',::,'']);",["'Access Denied as you do not have sufficient privileges or'","'the disk may be locked by another process.'","'You have to invoke this utility running in elevated mode'","'and make sure the disk is unlocked.'"]]],
     ["chkntfs",["GUI.compile(['?:\>[]','::','']);","You must specify at least one drive name."]],
-    ["cls",["GUI.clear(document.body);"]],
+    ["cls",["GUI.clear(document.body,5);"]],
     ["cmd",["open(window.location.href)","open(window.location.href)"]], //Add url commands for cmd functions, of course that poses a security issue, but i'll figure something out probably via confirming cookies
     ["color",["GUI.compile(['?:\>[]','Not completed.','']);",""]], //add coloring
     //below is out of order
@@ -25,9 +25,9 @@ var CMD=new Map([//fix wrapping and add auto scrolling
     ["dir",["GUI.compile(['?:\>function not complete','']);"]],
     ["",["GUI.compile(['?:\\>'])"]]])
 GUI = {
-    clear:function(e){
-        while(e.children.length-5){e.children[i].remove()}
-        e.children[e.children.length-5].value=""},
+    clear:function(e,i){
+        while(e.children.length-i){e.children[i].remove()}
+        e.children[e.children.length-i].value=""},
     compile:function(data){
         for(i=0;i<data.length;i++){
             line++; function insert(data){app.terminal.insertAdjacentHTML("beforeBegin",data)}
