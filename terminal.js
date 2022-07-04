@@ -32,7 +32,8 @@ SYS = {
         for(i=0;i<data.length;i++){
             line++; function insert(data){app.terminal.insertAdjacentHTML("beforeBegin",data)}
             if(data[i])insert("<p style='color:"+app["color"]+";margin:0px;font-family:consolas;white-space:pre' id='"+line+"'>"+data[i]+"</p>")
-            else insert("<p style='color:"+app["color"]+";margin:0px;height:10px' id='"+line+"''></p>")}}}
+            else insert("<p style='color:"+app["color"]+";margin:0px;height:10px' id='"+line+"''></p>")}
+        document.body.scrollIntoView(0)}}
 interpret = {
     eval:function(data){
         lines=data[0]==" "?data.toLowerCase().replace(" ","").split(/[\n,;]+/):data.toLowerCase().split(/[\n,;]+/) //could probably improve this
@@ -43,8 +44,7 @@ interpret = {
                 return 0}
             sync = lines[i].split(/ /);  func = CMD.get(sync[0])[0]; eval(func.replace("[]",sync.toString().replace(","," ")).replace("::",sync[1]?sync[1]:CMD.get(data)[1]))
             console.log(sync,func,CMD.get(data),data)
-            app.cmd.value=""}
-            document.body.scrollIntoView(0)}}
+            app.cmd.value=""}}}
 function AddEvent(object, id, func) {
     if(object.attachEvent) object.attachEvent("on" + id, function() {func.call(object)})
     else if(object.addEventListener) object.addEventListener(id, func, false)}
