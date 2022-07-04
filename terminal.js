@@ -42,8 +42,9 @@ interpret = {
                 app.cmd.value=""
                 return 0}
             sync = lines[i].split(/ /);  func = CMD.get(sync[0])[0]; eval(func.replace("[]",sync.toString().replace(","," ")).replace("::",sync[1]?sync[1]:CMD.get(data)[1]))
+            console.log(sync,func,CMD.get(data),data)
             app.cmd.value=""}
-            window.scrollTo(0, app["terminal"].getBoundingClientRect().top-window.innerHeight+app["terminal"].getBoundingClientRect().height)}}
+            document.body.scrollIntoView(0)}}
 function AddEvent(object, id, func) {
     if(object.attachEvent) object.attachEvent("on" + id, function() {func.call(object)})
     else if(object.addEventListener) object.addEventListener(id, func, false)}
