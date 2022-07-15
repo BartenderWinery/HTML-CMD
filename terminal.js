@@ -1,5 +1,5 @@
 line=0
-object.addEventListener("load",function(){
+document.addEventListener("load",function(){
     try{
         app
         if(!env){app["env"]="?:\>"}}catch(e){
