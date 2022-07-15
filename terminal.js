@@ -2,7 +2,7 @@ line=0
 object.addEventListener("load",function(){
     try{
         app
-        if(!env){app["env"="?:\>"]}}catch(e){
+        if(!env){app["env"]="?:\>"}}catch(e){
         console.error("You are missing required App configurations, please see the github repository.")
         console.warn("https://github.com/BartenderWinery/HTML-CMD")}})
 var CMD=new Map([//fix wrapping
