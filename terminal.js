@@ -17,7 +17,7 @@ var CMD=new Map([//fix wrapping
     ["chdir",["SYS.compile(['?:\>[]','::','']);","?:\>"]],
     ["chkdsk",["SYS.compile(['?:\>[]',::,'']);",["'Access Denied as you do not have sufficient privileges or'","'the disk may be locked by another process.'","'You have to invoke this utility running in elevated mode'","'and make sure the disk is unlocked.'"]]],
     ["chkntfs",["SYS.compile(['?:\>[]','::','']);","You must specify at least one drive name."]],
-    ["cls",["SYS.clear(document.body);"]],
+    ["cls",["SYS.clear(app['terminal'].parentElement);"]],
     ["cmd",["open(window.location.href)","open(window.location.href)"]], //Add url commands for cmd functions, of course that poses a security issue, but i'll figure something out probably via confirming cookies
     ["color",["SYS.compile(['?:\>[]','Not completed.','']);",""]], //add coloring
     //below is out of order
