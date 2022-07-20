@@ -17,7 +17,7 @@ var CMD=new Map([//fix wrapping
     ["chdir",["SYS.compile(['?:\>[]','::','']);","?:\>"]],
     ["chkdsk",["SYS.compile(['?:\>[]',::,'']);",["'Access Denied as you do not have sufficient privileges or'","'the disk may be locked by another process.'","'You have to invoke this utility running in elevated mode'","'and make sure the disk is unlocked.'"]]],
     ["chkntfs",["SYS.compile(['?:\>[]','::','']);","You must specify at least one drive name."]],
-    ["cls",["SYS.clear(document.body,5);"]],
+    ["cls",["SYS.clear(document.body);"]],
     ["cmd",["open(window.location.href)","open(window.location.href)"]], //Add url commands for cmd functions, of course that poses a security issue, but i'll figure something out probably via confirming cookies
     ["color",["SYS.compile(['?:\>[]','Not completed.','']);",""]], //add coloring
     //below is out of order
@@ -30,10 +30,10 @@ var CMD=new Map([//fix wrapping
 SYS = {
     clear:function(e){
         for(var i=0;i<line-1;i++)e.children[0].remove()
-        e.children[0].value=""; line=0},
+        e.children[0].value=""; line=1},
     compile:function(data){
         for(i=0;i<data.length;i++){
-            line++; function insert(data){app.terminal.insertAdjacentHTML("beforeBegin",data)}
+            function insert(data){app.terminal.insertAdjacentHTML("beforeBegin",data);line++}
             if(data[i])insert("<p style='color:"+app["color"]+";margin:0px;font-family:consolas;white-space:pre' id='"+line+"'>"+data[i]+"</p>")
             else insert("<p style='color:"+app["color"]+";margin:0px;height:10px' id='"+line+"''></p>")}
         if(!app["noscroll"])document.body.scrollIntoView(0)}}
