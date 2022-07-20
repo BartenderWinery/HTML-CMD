@@ -1,8 +1,8 @@
 line=0
-document.addEventListener("load",function(){
+document.addEventListener("DOMContentLoaded",function(){
+    if(!app["env"])app["env"]="?:\>"
     try{
-        app
-        if(!env){app["env"]="?:\>"}}catch(e){
+        app}catch(e){
         console.error("You are missing required App configurations, please see the github repository.")
         console.warn("https://github.com/BartenderWinery/HTML-CMD")}})
 var CMD=new Map([//fix wrapping
@@ -26,16 +26,17 @@ var CMD=new Map([//fix wrapping
     ["echo",["SYS.compile(['?:\>[]','::','']);","ECHO is on."]],
     ["dir",["SYS.compile(['?:\>function not complete','']);"]],
     ["",["SYS.compile(['?:\\>'])"]]])
+    //add custom error handling
 SYS = {
-    clear:function(e,i){
-        while(e.children.length-i){e.children[i].remove()}
-        e.children[e.children.length-i].value=""},
+    clear:function(e){
+        for(var i=0;i<line-1;i++)e.children[0].remove()
+        e.children[0].value=""; line=0},
     compile:function(data){
         for(i=0;i<data.length;i++){
             line++; function insert(data){app.terminal.insertAdjacentHTML("beforeBegin",data)}
             if(data[i])insert("<p style='color:"+app["color"]+";margin:0px;font-family:consolas;white-space:pre' id='"+line+"'>"+data[i]+"</p>")
             else insert("<p style='color:"+app["color"]+";margin:0px;height:10px' id='"+line+"''></p>")}
-        if(app["noscroll"]!="true"||!app["noscroll"])document.body.scrollIntoView(0)}}
+        if(!app["noscroll"])document.body.scrollIntoView(0)}}
 interpret = {
     eval:function(data){
         lines=data[0]==" "?data.toLowerCase().replace(" ","").split(/[\n,;]+/):data.toLowerCase().split(/[\n,;]+/) //could probably improve this
