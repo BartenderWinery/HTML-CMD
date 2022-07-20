@@ -25,8 +25,7 @@ var CMD=new Map([//fix wrapping
     ["exit",["window.location.reload();"]],
     ["echo",["SYS.compile(['?:\>[]','::','']);","ECHO is on."]],
     ["dir",["SYS.compile(['?:\>function not complete','']);"]],
-    ["",["SYS.compile(['?:\\>'])"]]])
-    //add custom error handling
+    ["",["SYS.compile(['?:\>'])"]]])
 SYS = {
     clear:function(e){
         for(var i=0;i<line-1;i++)e.children[0].remove()
@@ -42,8 +41,7 @@ interpret = {
         lines=data[0]==" "?data.toLowerCase().replace(" ","").split(/[\n,;]+/):data.toLowerCase().split(/[\n,;]+/) //could probably improve this
         for(i=0; i<lines.length; i++){
             if(!CMD.has(lines[i].split(/ /)[0])||"1234567890-=[]\\;',./`~!@#$%^&*()_+{}|\":?><".split("").some(_i => lines[i][0]==_i)){//needs optimizing
-                SYS.compile([app["env"]+lines[i]+"","'"+lines[i].split(" ")[0]+"' is not recoginized as an internal or external command,","operable program or batch file.",""])
-                app.cmd.value=""
+                eval(app["error"]);app.cmd.value=""
                 return 0}
             sync = lines[i].split(/ /);  func = CMD.get(sync[0])[0]; eval(func.replace("[]",sync.toString().replace(","," ")).replace("::",sync[1]?sync[1]:CMD.get(data)[1]))
             console.log(sync,func,CMD.get(data),data)
