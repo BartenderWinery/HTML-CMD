@@ -29,7 +29,7 @@ var CMD=new Map([//fix wrapping
 SYS = {
     clear:function(e){
         for(var i=0;i<line-1;i++)e.children[0].remove()
-        e.children[0].value=""; line=1},
+        e.children[0].children[0].value=""; line=1},
     compile:function(data){
         for(i=0;i<data.length;i++){
             function insert(data){app.terminal.insertAdjacentHTML("beforeBegin",data);line++}
