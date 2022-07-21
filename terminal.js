@@ -1,6 +1,7 @@
 line=0
 document.addEventListener("DOMContentLoaded",function(){
     if(!app["env"])app["env"]="?:\>"
+    app.cmd.parentElement.childNodes[0].textContent=app.env
     try{
         app}catch(e){
         console.error("You are missing required App configurations, please see the github repository.")
@@ -54,6 +55,7 @@ AddEvent(window,'keydown',function(e){
         case 13:
             e.preventDefault()
             interpret.eval(app.cmd.value)
+            app.cmd.parentElement.childNodes[0].textContent=app.env
             break
         default:
             if(e.crtlKey){} //^B here
