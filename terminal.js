@@ -2,6 +2,8 @@ line=0
 document.addEventListener("DOMContentLoaded",function(){
     try{
         if(!app["env"])app["env"]="?:\>"
+        if(!app["color"])app["color"]="rgb(204,204,204)"
+        if(!app["error"])app["error"]="[\"?:\>\"+lines[i]+\"\",\"'\"+lines[i].split(\" \")[0]+\"' is not recoginized as an internal or external command,\",\"operable program or batch file.\",\"\"]"
         app.cmd.parentElement.childNodes[0].textContent=app.env}catch(e){
         console.error("You are missing required App configurations, please see the github repository.")
         console.warn("https://github.com/BartenderWinery/HTML-CMD")}})
