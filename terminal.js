@@ -36,7 +36,7 @@ SYS = {
         for(i=0;i<data.length;i++){
             function insert(data){app.terminal.insertAdjacentHTML("beforeBegin",data);line++}
             if(data[i])insert("<p style='color:"+app["color"]+";margin:0px;font-family:consolas;white-space:break-spaces' id='"+line+"'>"+data[i]+"</p>")
-            else insert("<p style='color:"+app["color"]+";margin:0px;height:10px' id='"+line+"''></p>")}
+            else insert("<p style='color:"+app["color"]+";margin:0px' id='"+line+"''></p>")}
         if(!app["noscroll"])document.body.scrollIntoView(0)}}
 interpret = {
     eval:function(data){
