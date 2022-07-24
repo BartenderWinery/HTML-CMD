@@ -26,7 +26,7 @@ con.onmousedown=function(e){ //add mask
     e.preventDefault()
     position[2] = e.clientX
     position[3] = e.clientY
-    document.onmouseup=function(e){
+    document.onmouseup=function(){
         document.onmouseup = null
         document.onmousemove = null
         con.style.pointerEvents = "all"
